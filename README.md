@@ -108,7 +108,7 @@ A popular strategy to manage asset versioning, which is used by tools such as We
 use Tleckie\Assets\Bucket;
 use Tleckie\Assets\Versioned\JsonManifestVersioned;
 $bucket =   new Bucket(
-    new JsonManifestVersioned('./json/rev-manifest.json')
+    new JsonManifestVersioned(__DIR__ .'/json/rev-manifest.json')
 );
 
 $bucket->url('css/app.css');
@@ -125,7 +125,7 @@ use Tleckie\Assets\Bucket;
 use Tleckie\Assets\Versioned\JsonManifestVersioned;
 
 $bucket =   new Bucket(
-    new JsonManifestVersioned('./json/rev-manifest.json'),
+    new JsonManifestVersioned(__DIR__ .'/json/rev-manifest.json'),
     '//domain.cookieless.com'
 );
 
