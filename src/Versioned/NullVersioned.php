@@ -13,17 +13,13 @@ namespace Tleckie\Assets\Versioned;
  */
 class NullVersioned implements VersionedInterface
 {
-    /**
-     * @var string
-     */
-    protected string $version = '';
 
     /**
      * @inheritdoc
      */
     public function version(): string
     {
-        return $this->version;
+        return '';
     }
 
     /**
