@@ -19,11 +19,6 @@ class NullVersioned implements VersionedInterface
     protected string $version = '';
 
     /**
-     * @var string
-     */
-    protected string $format = '';
-
-    /**
      * @inheritdoc
      */
     public function version(): string

@@ -25,7 +25,7 @@ interface BucketInterface
     public function version(): string;
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function path(): ?string;
+    public function path(): string;
 }

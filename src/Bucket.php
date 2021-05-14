@@ -5,7 +5,11 @@ declare(strict_types=1);
 namespace Tleckie\Assets;
 
 use Tleckie\Assets\Versioned\VersionedInterface;
+use function ltrim;
 use function rtrim;
+use function sprintf;
+use function str_contains;
+use function str_starts_with;
 
 /**
  * Class Bucket
@@ -72,7 +76,7 @@ class Bucket implements BucketInterface
     /**
      * @inheritdoc
      */
-    public function path(): ?string
+    public function path(): string
     {
         return $this->path;
     }

@@ -7,7 +7,9 @@ namespace Tleckie\Assets\Versioned;
 use InvalidArgumentException;
 use JsonException;
 use function file_get_contents;
+use function is_file;
 use function json_decode;
+use function sprintf;
 
 /**
  * Class JsonManifestVersioned
@@ -18,11 +20,6 @@ use function json_decode;
  */
 class JsonManifestVersioned implements VersionedInterface
 {
-    /**
-     * @var string
-     */
-    protected string $version = '';
-
     /**
      * @var string
      */
