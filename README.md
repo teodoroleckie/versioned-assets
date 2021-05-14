@@ -23,7 +23,7 @@ The asset component allows you to have full control of the paths of your resourc
 use Tleckie\Assets\Bucket;
 use Tleckie\Assets\Versioned\Versioned;
 
-$bucket =   new Bucket(new Versioned('v1'), '/path');
+$bucket = new Bucket(new Versioned('v1'), '/path');
 
 // Relative path
 $bucket->url('js/app.js');
@@ -41,7 +41,7 @@ You can also customize the format of your version by adding the second parameter
 use Tleckie\Assets\Bucket;
 use Tleckie\Assets\Versioned\Versioned;
 
-$bucket =   new Bucket(
+$bucket = new Bucket(
     new Versioned('v1', "%s?custom-version=%s"), 
     '/path'
 );
@@ -63,7 +63,7 @@ When configuring a domain as a path, the resources included as relative and abso
 use Tleckie\Assets\Bucket;
 use Tleckie\Assets\Versioned\Versioned;
 
-$bucket =   new Bucket(
+$bucket = new Bucket(
     new Versioned('v1', '%s?version=%s'), 
     '//domain.cookieless.com'
 );
@@ -83,7 +83,7 @@ $bucket->url('/js/app.js');
 use Tleckie\Assets\Bucket;
 use Tleckie\Assets\Versioned\Versioned;
 
-$bucket =   new Bucket(
+$bucket = new Bucket(
     new Versioned('v1', '%2$s/%1$s'), 
     '//domain.cookieless.com'
 );
@@ -100,7 +100,7 @@ You can also use NullVersioned if you want to disable versioning for your assets
 use Tleckie\Assets\Bucket;
 use Tleckie\Assets\Versioned\NullVersioned;
 
-$bucket =   new Bucket(
+$bucket = new Bucket(
     new NullVersioned(), 
     '//domain.cookieless.com'
 );
@@ -123,7 +123,7 @@ A popular strategy to manage asset versioning, which is used by tools such as We
 
 use Tleckie\Assets\Bucket;
 use Tleckie\Assets\Versioned\JsonManifestVersioned;
-$bucket =   new Bucket(
+$bucket = new Bucket(
     new JsonManifestVersioned(__DIR__ .'/json/rev-manifest.json')
 );
 
@@ -140,7 +140,7 @@ $bucket->url('js/app.js');
 use Tleckie\Assets\Bucket;
 use Tleckie\Assets\Versioned\JsonManifestVersioned;
 
-$bucket =   new Bucket(
+$bucket = new Bucket(
     new JsonManifestVersioned(__DIR__ .'/json/rev-manifest.json'),
     '//domain.cookieless.com'
 );
