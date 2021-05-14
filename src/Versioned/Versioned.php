@@ -13,8 +13,18 @@ use function sprintf;
  * @category Versioned
  * @author   Teodoro Leckie Westberg <teodoroleckie@gmail.com>
  */
-class Versioned extends NullVersioned
+class Versioned implements VersionedInterface
 {
+    /**
+     * @var string
+     */
+    protected string $version = '';
+
+    /**
+     * @var string
+     */
+    protected string $format = '';
+
     /**
      * Versioned constructor.
      *
@@ -30,12 +40,20 @@ class Versioned extends NullVersioned
     /**
      * @inheritdoc
      */
-    public function applyVersion(string $asset, string $path): string
+    public function applyVersion(string $asset): string
     {
-        return sprintf(
-            $this->format,
-            $this->prepareFile($asset, $path),
-            $this->version
+        return preg_replace(
+            '#\/{2,}#',
+            '/',
+            sprintf($this->format, $asset, $this->version())
         );
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function version(): string
+    {
+        return $this->version;
     }
 }

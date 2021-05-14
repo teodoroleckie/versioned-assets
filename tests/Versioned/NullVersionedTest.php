@@ -20,14 +20,13 @@ class NullVersionedTest extends TestCase
      * @test
      * @dataProvider  checkDataProvider
      * @param string $asset
-     * @param string $path
      * @param string $expected
      */
-    public function check(string $asset, string $path, string $expected): void
+    public function check(string $asset, string $expected): void
     {
         $versioned = new NullVersioned();
 
-        static::assertEquals($expected, $versioned->applyVersion($asset, $path));
+        static::assertEquals($expected, $versioned->applyVersion($asset));
 
         static::assertEmpty($versioned->version());
     }
@@ -38,14 +37,10 @@ class NullVersionedTest extends TestCase
     public function checkDataProvider(): array
     {
         return [
-            ['/asset.css', '/path', '/asset.css'],
-            ['asset.css', '/path', '/path/asset.css'],
-            ['asset.css', '//www.statics.com/path', '//www.statics.com/path/asset.css'],
-            ['asset.css', 'http://www.statics.com/path', 'http://www.statics.com/path/asset.css'],
-            ['asset.css', 'https://www.statics.com/path', 'https://www.statics.com/path/asset.css'],
-            ['/asset.css', 'https://www.statics.com/path', 'https://www.statics.com/path/asset.css'],
-            ['/asset.css', '', '/asset.css'],
-            ['asset.css', '', 'asset.css'],
+            ['/asset.css', '/asset.css'],
+            ['asset.css', 'asset.css'],
+            ['/path/asset.css', '/path/asset.css'],
+            ['path/asset.css', 'path/asset.css'],
         ];
     }
 }

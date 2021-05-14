@@ -29,15 +29,14 @@ class JsonManifestVersionedTest extends TestCase
      * @test
      * @dataProvider  checkDataProvider
      * @param string $asset
-     * @param string $path
      * @param string $expected
      * @throws JsonException
      */
-    public function check(string $asset, string $path, string $expected): void
+    public function check(string $asset, string $expected): void
     {
         $versioned = new JsonManifestVersioned($this->path->url() . '/json/rev-manifest.json');
 
-        static::assertEquals($expected, $versioned->applyVersion($asset, $path));
+        static::assertEquals($expected, $versioned->applyVersion($asset));
 
         static::assertEmpty($versioned->version());
     }
@@ -77,16 +76,13 @@ class JsonManifestVersionedTest extends TestCase
     public function checkDataProvider(): array
     {
         return [
-            ['css/asset.css', '/path', '/path/build/css/app.a9b916426ea1d10021f3f17ce8031f93c2.css'],
-            ['/css/asset.css', '/path', '/css/asset.css'],
-            ['css/asset.css', '//www.statics.com/path', '//www.statics.com/path/build/css/app.a9b916426ea1d10021f3f17ce8031f93c2.css'],
-            ['css/asset.css', 'http://www.statics.com/path', 'http://www.statics.com/path/build/css/app.a9b916426ea1d10021f3f17ce8031f93c2.css'],
-            ['css/asset.css', 'https://www.statics.com/path', 'https://www.statics.com/path/build/css/app.a9b916426ea1d10021f3f17ce8031f93c2.css'],
-            ['/asset.css', 'https://www.statics.com/path', 'https://www.statics.com/path/asset.css'],
-            ['/asset.css', '', '/asset.css'],
-            ['/asset.css', '/path', '/asset.css'],
-            ['/asset.css', '//www.statics.com/path', '//www.statics.com/path/asset.css'],
-            ['asset.css', '', 'asset.css'],
+            ['css/asset.css', 'build/css/app.a9b916426ea1d10021f3f17ce8031f93c2.css'],
+            ['/css/asset.css', '/css/asset.css'],
+            ['css/asset.css', 'build/css/app.a9b916426ea1d10021f3f17ce8031f93c2.css'],
+            ['css/asset.css', 'build/css/app.a9b916426ea1d10021f3f17ce8031f93c2.css'],
+            ['css/asset.css', 'build/css/app.a9b916426ea1d10021f3f17ce8031f93c2.css'],
+            ['/asset.css', '/asset.css'],
+            ['asset.css', 'asset.css'],
         ];
     }
 

@@ -20,8 +20,7 @@ interface VersionedInterface
 
     /**
      * @param string $asset
-     * @param string $path
      * @return string
      */
-    public function applyVersion(string $asset, string $path): string;
+    public function applyVersion(string $asset): string;
 }

@@ -43,15 +43,30 @@ class Bucket implements BucketInterface
      */
     public function url(string $asset): string
     {
-        return $this->version->applyVersion($asset, $this->path);
+        $versioned = ltrim($this->version->applyVersion($asset), '/');
+
+        if ($this->hasScheme($this->path())) {
+            return sprintf("%s/%s", $this->path(), $versioned);
+        }
+
+        if ($this->isAbsolute($asset)) {
+            return sprintf('/%s', $versioned);
+        }
+
+        if (empty($this->path)) {
+            return $versioned;
+        }
+
+        return sprintf("%s/%s", $this->path(), $versioned);
     }
 
     /**
-     * @inheritdoc
+     * @param string $path
+     * @return bool
      */
-    public function version(): string
+    private function hasScheme(string $path): bool
     {
-        return $this->version->version();
+        return str_contains($path, '://') || str_starts_with($path, '//');
     }
 
     /**
@@ -60,5 +75,22 @@ class Bucket implements BucketInterface
     public function path(): ?string
     {
         return $this->path;
+    }
+
+    /**
+     * @param string $asset
+     * @return bool
+     */
+    private function isAbsolute(string $asset)
+    {
+        return str_starts_with($asset, '/');
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function version(): string
+    {
+        return $this->version->version();
     }
 }

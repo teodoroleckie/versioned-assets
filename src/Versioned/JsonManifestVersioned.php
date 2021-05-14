@@ -16,8 +16,18 @@ use function json_decode;
  * @category JsonManifestVersioned
  * @author   Teodoro Leckie Westberg <teodoroleckie@gmail.com>
  */
-class JsonManifestVersioned extends NullVersioned
+class JsonManifestVersioned implements VersionedInterface
 {
+    /**
+     * @var string
+     */
+    protected string $version = '';
+
+    /**
+     * @var string
+     */
+    protected string $format = '';
+
     /**
      * @var array
      */
@@ -48,12 +58,20 @@ class JsonManifestVersioned extends NullVersioned
     /**
      * @inheritdoc
      */
-    public function applyVersion(string $asset, string $path): string
+    public function version(): string
+    {
+        return '';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function applyVersion(string $asset): string
     {
         if (isset($this->data[$asset])) {
             $asset = $this->data[$asset];
         }
 
-        return $this->prepareFile($asset, $path);
+        return $asset;
     }
 }

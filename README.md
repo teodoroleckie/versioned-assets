@@ -77,6 +77,22 @@ $bucket->url('/js/app.js');
 //result: //domain.cookieless.com/js/app.js?version=v1
 ```
 
+```php
+<?php
+
+use Tleckie\Assets\Bucket;
+use Tleckie\Assets\Versioned\Versioned;
+
+$bucket =   new Bucket(
+    new Versioned('v1', '%2$s/%1$s'), 
+    '//domain.cookieless.com'
+);
+
+// Version in path
+$bucket->url('js/app.js');
+//result: //domain.cookieless.com/v1/js/app.js
+```
+
 You can also use NullVersioned if you want to disable versioning for your assets.
 ```php
 <?php
@@ -135,5 +151,9 @@ $bucket->url('css/app.css');
 $bucket->url('js/app.js');
 //result: //domain.cookieless.com/build/js/app.56fa630905267b809161e71d0f8a0c017b.js
 ```
+### Custom versioning:
+You can create your custom versioning class by implementing the VersionedInterface interface.
+
+
 
 That's all! I hope this helps you ;)

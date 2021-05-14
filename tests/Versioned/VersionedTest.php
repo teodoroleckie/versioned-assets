@@ -22,29 +22,27 @@ class VersionedTest extends TestCase
      * @param string $version
      * @param string $format
      * @param string $asset
-     * @param string $path
      * @param string $expected
      */
-    public function check(string $version, string $format, string $asset, string $path, string $expected): void
+    public function check(string $version, string $format, string $asset, string $expected): void
     {
         $versioned = new Versioned($version, $format);
 
-        static::assertEquals($expected, $versioned->applyVersion($asset, $path));
+        static::assertEquals($expected, $versioned->applyVersion($asset));
 
         static::assertEquals($version, $versioned->version());
     }
 
+    /**
+     * @return string[][]
+     */
     public function checkDataProvider(): array
     {
         return [
-            ['v1', '%s?%s', '/asset.css', '/path', '/asset.css?v1'],
-            ['v1', '%s?%s', 'asset.css', '/path', '/path/asset.css?v1'],
-            ['v1', '%s?%s', 'asset.css', '//www.statics.com/path', '//www.statics.com/path/asset.css?v1'],
-            ['v1', '%s?%s', 'asset.css', 'http://www.statics.com/path', 'http://www.statics.com/path/asset.css?v1'],
-            ['v1', '%s?%s', 'asset.css', 'https://www.statics.com/path', 'https://www.statics.com/path/asset.css?v1'],
-            ['v1', '%s?%s', '/asset.css', 'https://www.statics.com/path', 'https://www.statics.com/path/asset.css?v1'],
-            ['v1', '%s?%s', '/asset.css', '', '/asset.css?v1'],
-            ['v1', '%s?%s', 'asset.css', '', 'asset.css?v1'],
+            ['v1', '%s?%s', '/asset.css', '/asset.css?v1'],
+            ['v1', '%2$s/%1$s', '/asset.css', 'v1/asset.css'],
+            ['v1', '%s?%s', 'asset.css', 'asset.css?v1'],
+            ['v1', '%2$s/%1$s', 'asset.css', 'v1/asset.css'],
         ];
     }
 }

@@ -4,10 +4,6 @@ declare(strict_types=1);
 
 namespace Tleckie\Assets\Versioned;
 
-use function sprintf;
-use function str_contains;
-use function str_starts_with;
-
 /**
  * Class NullVersioned
  *
@@ -38,48 +34,8 @@ class NullVersioned implements VersionedInterface
     /**
      * @inheritdoc
      */
-    public function applyVersion(string $asset, string $path): string
+    public function applyVersion(string $asset): string
     {
-        return $this->prepareFile($asset, $path);
-    }
-
-    /**
-     * @param string $asset
-     * @param string $path
-     * @return string
-     */
-    protected function prepareFile(string $asset, string $path): string
-    {
-        if ($this->hasScheme($path)) {
-            return $path . ($this->isAbsolute($asset) ? $asset : sprintf('/%s', $asset));
-        }
-
-        if ($this->isAbsolute($asset)) {
-            return $asset;
-        }
-
-        if (empty($path)) {
-            return $asset;
-        }
-
-        return $path . sprintf('/%s', $asset);
-    }
-
-    /**
-     * @param string $path
-     * @return bool
-     */
-    private function hasScheme(string $path): bool
-    {
-        return str_contains($path, '://') || str_starts_with($path, '//');
-    }
-
-    /**
-     * @param string $asset
-     * @return bool
-     */
-    private function isAbsolute(string $asset)
-    {
-        return str_starts_with($asset, '/');
+        return $asset;
     }
 }
