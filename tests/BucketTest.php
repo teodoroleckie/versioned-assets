@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tleckie\Assets\Tests\Bucket;
+namespace Tleckie\Assets\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Tleckie\Assets\Bucket;
