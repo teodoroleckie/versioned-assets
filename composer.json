@@ -1,7 +1,7 @@
 {
   "name": "tleckie/versioned-assets",
   "license": "MIT",
-  "description": "Moving asset locations is cumbersome and error, prone - it requires you to carefully update the URLs of all assets included in all templates.\nThe asset component allows you to have full control of the paths of your resources in an orderly way that is easy to maintain.",
+  "description": "Moving asset locations is cumbersome and error prone it requires you to carefully update the URLs of all assets included in all templates. The asset component allows you to have full control of the paths of your resources in an orderly way that is easy to maintain.",
   "type": "library",
   "homepage": "https://github.com/teodoroleckie/versioned-assets",
   "authors": [
