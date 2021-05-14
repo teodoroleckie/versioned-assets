@@ -59,6 +59,6 @@ class Bucket implements BucketInterface
      */
     public function path(): ?string
     {
-        return $this->paths;
+        return $this->path;
     }
 }
